@@ -42,11 +42,23 @@ def arithmetic_arranger(problems, with_solution=False):
         if one_ready.startswith('Error'):
             return one_ready
 
-        resultaat2.append(one_ready.splitlines())
+        resultaat2.extend(one_ready.splitlines())
 
-    x = []
-    for line in zip(*resultaat2):
-        x.append('    '.join(line))
+    aantal_lijnen = 4 if with_solution else 3
+    line1 = '    '.join(x for x in resultaat2[0::aantal_lijnen])
+    line2 = '    '.join(x for x in resultaat2[1::aantal_lijnen])
+    line3 = '    '.join(x for x in resultaat2[2::aantal_lijnen])
+    if with_solution:
+        line4 = '    '.join(x for x in resultaat2[3::aantal_lijnen])
+        return line1 + '\n' + line2 + '\n' + line3 + '\n' + line4
+    return line1 + '\n' + line2 + '\n' + line3
 
-    return '\n'.join(x)
+    #
+    #     resultaat2.append(one_ready.splitlines())
+    #
+    # x = []
+    # for line in zip(*resultaat2):
+    #     x.append('    '.join(line))
+    #
+    # return '\n'.join(x)
 
